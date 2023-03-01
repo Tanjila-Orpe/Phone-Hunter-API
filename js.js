@@ -12,6 +12,13 @@ const func = (phone) =>{
 const body = document.getElementById('container');
 const displayPhone = (display) =>{
     body.innerHTML = '';
+    const displayNone = document.getElementById('displayNone');
+    if(display.length === 0){
+        displayNone.classList.remove('d-none');
+    }
+    else{
+        displayNone.classList.add('d-none');
+    }
     display.forEach(item => {
         console.log(item);
         const div = document.createElement('div');
@@ -32,4 +39,4 @@ const displayPhone = (display) =>{
         func(searchPhone);
     })
 }
-func();
+func('iphone');
