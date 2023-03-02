@@ -9,8 +9,10 @@ const func = (phone) =>{
         .then(res => res.json())
         .then(data => displayPhone(data.data))
 }
+
 const body = document.getElementById('container');
 const displayPhone = (display) =>{
+    
     body.innerHTML = '';
     const displayNone = document.getElementById('displayNone');
     if(display.length === 0){
@@ -33,10 +35,24 @@ const displayPhone = (display) =>{
             </div>`
         body.appendChild(div);
     });
-    document.getElementById('btn-search').addEventListener('click',() =>{
-        const searchPhone = document.getElementById('input').value;
-        console.log(searchPhone);
-        func(searchPhone);
-    })
+    loader(false);
 }
-func('iphone');
+
+document.getElementById('btn-search').addEventListener('click',() =>{
+    loader(true);
+    const searchPhone = document.getElementById('input').value;
+    // console.log(searchPhone);
+    
+    func(searchPhone);
+});
+
+
+const loader = isLoading =>{
+    const load = document.getElementById("spinner"); 
+    if(isLoading === true){
+        load.classList.remove('d-none');
+    }
+    else{
+        load.classList.add('d-none');
+    }
+}
